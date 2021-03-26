@@ -1,0 +1,128 @@
+Declaração de Ações
+
+	Bens e Direitos:
+
+	- Ajustar os valores de 2019, com os ajustes de desdobramento.
+	- Ajustar o ano no teste pra ficar dinamico.
+	- Buscar por bonificação, desdobramento e grupamento.
+	- Ajustar a quantidade de cotas de ações de acordo com desdobramento, grupamento ou bonificação.
+	- Baixar CNPJ e nome de FII ainda não cadastrado.
+	
+	- Declarar créditos em transito - Juros sobre Capital proprio.
+
+	Rendimentos Isentos e Não tributaveis:
+
+	- Extrair vendas por ano da B3.
+	- Calcular o lucro (lucro até R$ 20.000) na venda, de todas as ações vendidas no ano.
+	- Exibir os dados de acordo IRPF.
+
+	- Pegar os dados do informe de rendimentos de cada ação, de acordo com o banco escriturador.
+	- Declarar dividendos.
+
+	Rendimentos sujeitos a tributação exclusiva/definitiva:
+
+	- Juros sobre capital proprio pagos.
+	- Declarar aluguel de ações.
+
+Declaração de Fundos Imobiliários:
+
+	Bens e Direitos:
+
+		- Criar tabela de posicao de fundos imobiliarios
+		- Cadastra a posição de 2019
+		- Extrair dados do ano corrente no cei.
+		- Atualizar a posicao para o ano atual.
+		- Ajustar a quantidade de cotas de fiis de acordo com desdobramento, grupamento ou bonificação.
+		- Baixar CNPJ e nome de FII ainda não cadastrado.
+
+	Rendimentos Isentos e Não Tributaveis:
+
+		- Pegar os dados do informe de rendimentos de fii.
+		- Declarar rendimentos.
+
+Declarar Saldo na corretora:
+
+	Bens e Direitos:
+
+		- Pegar informe da corretora
+		- Declarar o saldo com codigo 61 ou 69.
+
+Declarar Fundo de Ações:
+
+	Bens e Direitos:
+
+		- Pegar no informe da corretora os fundos de ações
+		- Declarar com codigo 74
+
+Declarar ETF:
+
+	Bens e Direitos:
+
+		- Pegar no cei no periodo do ano corrente.
+		- Declarar com codigo 74
+
+Declarar Nubank:
+	- https://blog.nubank.com.br/como-declarar-conta-nubank-no-imposto-de-renda/
+
+	Bens e Direitos:
+		- Pegar informe do nubank.
+		- Declarar codigo 45 para o RDB e para a conta de Pagamentos.
+
+	Rendimentos sujeitos a tributação exclusiva:
+		- Pegar informe do nubank.
+		- Declarar com codigo 6 para a Nu Financeira e para a Pagamentos.
+
+Declarar Picpay:
+
+	Bens e Direitos:
+		- Pegar informe do picpay.
+		- Declarar codigo 45 para a conta de Pagamentos.
+
+	Rendimentos sujeitos a tributação exclusiva:
+		- Pegar informe do picpay.
+		- Declarar com codigo 6 para a conta de Pagamentos.
+
+Declarar IOUU (emprestimo P2P Lending):
+
+	- https://www.iouu.com.br/blog/como-declarar-seus-investimentos-na-iouu-no-imposto-de-renda?utm_medium=email&_hsmi=114003242&_hsenc=p2ANqtz--mif2Dm1h1f76GZ6i_kSsPfrmuYlw9TfqOHDdNB_KQfNuVFUAVRzsnEs0fW_-gDlubcHm_f4uOAcJfhb5RVudVn6MArA&utm_content=114003242&utm_source=hs_email
+	
+	Bens e direitos:
+		- Pegar informe do iouu.
+		- Declarar codigo 45.
+
+	Rendimentos sujeitos a tributação exclusiva:
+		- Pegar informe do iouu.
+		- Declarar com codigo 6.
+
+Declarar Ações no Exterior:
+
+	- https://www.youtube.com/watch?v=nFvaFN2Vhas&ab_channel=JovensdeNeg%C3%B3cios
+
+	Bens e direitos:
+		- Pegar informe da avenue.
+		- Declarar com codigo 62 e localização: 249 - EUA
+		- Declarar cada ação com codigo 31 e localização: 249 - EUA
+	Rendimentos:
+		- Baixar o programa carnê leão do ano da declaração atual. (Em 2021 vai ser pelo e-cac)
+		- Preencher o carnê leão e exportar arquivo.
+		- Importar no programa do irpf.
+
+Declarar Venda de Bitcoin:
+  
+	- Não possuo mais e o valor de venda é inferior a 1000,00.
+
+Declarar Apostas esportivas:
+	
+	- Poucas informações sobre como declarar, não vou declarar em 2020.
+	
+	 
+Declarar Saldo em conta de desenvolvedor google?
+Criar acesso ao E-cac
+
+
+
+
+
+	
+
+

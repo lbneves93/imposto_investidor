@@ -1,0 +1,2 @@
+class AssetPosition < ApplicationRecord
+end
