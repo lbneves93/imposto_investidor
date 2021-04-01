@@ -26,3 +26,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 script_assets_and_rights.rb
+
+*.txt
+*.xls
+*.png

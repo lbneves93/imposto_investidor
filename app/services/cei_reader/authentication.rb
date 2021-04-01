@@ -7,7 +7,13 @@ module CeiReader
       @cpf = cpf
       @password = password
       args = ['--headless', '--no-sandbox', '--disable-dev-shm-usage']
-      @browser = Watir::Browser.new(:chrome, args: args)
+      prefs = {
+        download: {
+          prompt_for_download: false,
+          default_directory: Rails.root.to_s
+        }
+      }
+      @browser = Watir::Browser.new(:chrome, options: { args: args, prefs: prefs })
     end
 
     def signin

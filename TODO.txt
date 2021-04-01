@@ -2,9 +2,7 @@ Declaração de Ações
 
 	Bens e Direitos:
 
-	- Ajustar os valores de 2019, com os ajustes de desdobramento.
-	- Ajustar o ano no teste pra ficar dinamico.
-	- Buscar por bonificação, desdobramento e grupamento.
+	- Buscar por bonificação, desdobramento e grupamento. (Só extrair posição acioaria da B3 em dezembro)
 	- Ajustar a quantidade de cotas de ações de acordo com desdobramento, grupamento ou bonificação.
 	- Baixar CNPJ e nome de FII ainda não cadastrado.
 	

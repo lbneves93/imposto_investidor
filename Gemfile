@@ -28,7 +28,8 @@ gem 'selenium-webdriver'
 gem 'rexml'
 gem 'webdrivers'
 gem 'watir'
-
+gem 'roo', '~> 2.8.0'
+gem 'roo-xls'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
