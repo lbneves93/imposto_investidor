@@ -27,6 +27,6 @@
 /config/master.key
 script_assets_and_rights.rb
 
-*.txt
-*.xls
-*.png
+/*.txt
+/*.xls
+/*.png
