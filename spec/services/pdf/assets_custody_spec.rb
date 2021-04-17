@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Pdf::AssetsCustody, type: :service do
-  describe '.extract_assets_position' do
+  describe '#extract_assets_position' do
     context 'when assets custody file do not exists' do
       subject(:assets_custody_data) do
         file_path = "#{Rails.root}/invalid_file.pdf"

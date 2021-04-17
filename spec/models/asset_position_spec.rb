@@ -1,31 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe AssetPosition, type: :model do
-  describe '.update_assets_position' do
+  describe '#update_assets_position' do
     before do
       AssetPosition.create(code: 'ABEV3F', year: year, quotas: 10, total_cost: 200.to_d)
       @assets_position = described_class.new.update_assets_position(assets_negociation, assets_custody)
     end
 
     context 'when already update the asset position' do
-      let(:assets_negociation) do 
-        [{
-          code: 'ABEV3F', 
-          buy_count: 10, 
-          sell_count: 0,
-          buy_sell_diff: 10,
-          avg_buy_price: 10.to_d, 
-          avg_sell_price: 0.to_d
-        }]
-      end
-
-      let(:assets_custody) do
-        [{
-          code: 'ABEV3F',
-          quotas: 10
-        }]
-      end
-
+      let(:assets_negociation) { [build_assets_negociation_hash('ABEV3F', 10, 0, 10, 10, 0)] }
+      let(:assets_custody){ [{ code: 'ABEV3F', quotas: 10 }] }
       let(:year) { Time.zone.now.year-1 }
 
       it 'returns message assets already updated' do
@@ -37,23 +21,8 @@ RSpec.describe AssetPosition, type: :model do
       let(:year) { Time.zone.now.year-2 }
 
       context 'when bought more quotas for old asset' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ABEV3F', 
-            buy_count: 10, 
-            sell_count: 0,
-            buy_sell_diff: 10,
-            avg_buy_price: 12.53.to_d, 
-            avg_sell_price: 0.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ABEV3F',
-            quotas: 20
-          }]
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ABEV3F', 10, 0, 10, 12.53, 0)] }
+        let(:assets_custody){ [{ code: 'ABEV3F', quotas: 20 }] }
 
         it 'creates a new assets_position for current year' do
           expect(AssetPosition.find_by(year: year+1, code: 'ABEV3F')).to have_attributes(
@@ -66,16 +35,8 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when not bought more quotas for old asset' do
-        let(:assets_negociation) do 
-          []
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ABEV3F',
-            quotas: 10
-          }]
-        end
+        let(:assets_negociation) { [] }
+        let(:assets_custody){ [{ code: 'ABEV3F', quotas: 10 }] }
 
         it 'creates a new assets_position for current year' do
           expect(AssetPosition.find_by(year: year+1, code: 'ABEV3F')).to have_attributes(
@@ -88,20 +49,8 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when sold all quotas for old asset' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ABEV3F', 
-            buy_count: 0, 
-            sell_count: 10,
-            buy_sell_diff: -10,
-            avg_buy_price: 0.to_d, 
-            avg_sell_price: 20.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          []
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ABEV3F', 0, 10, -10, 0, 20)] }
+        let(:assets_custody){ [] }
 
         it 'not creates a new assets_position for current year' do
           expect(AssetPosition.find_by(year: year+1, code: 'ABEV3F')).to be_nil
@@ -109,26 +58,10 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when sold just a few quotas for old asset' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ABEV3F', 
-            buy_count: 0, 
-            sell_count: 2,
-            buy_sell_diff: -2,
-            avg_buy_price: 0.to_d, 
-            avg_sell_price: 20.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ABEV3F',
-            quotas: 8
-          }]
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ABEV3F', 0, 2, -2, 0, 20)] }
+        let(:assets_custody){ [{ code: 'ABEV3F', quotas: 8 }] }   
 
         it 'creates a new assets_position for current year' do
-
           expect(AssetPosition.find_by(year: year+1, code: 'ABEV3F')).to have_attributes(
             code: 'ABEV3F',
             year: year+1,
@@ -139,26 +72,10 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when bought quotas for new asset' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ITSA4F', 
-            buy_count: 10, 
-            sell_count: 0,
-            buy_sell_diff: 10,
-            avg_buy_price: 10.to_d, 
-            avg_sell_price: 0.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ITSA4F',
-            quotas: 10
-          }]
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ITSA4F', 10, 0, 10, 10, 0)] }
+        let(:assets_custody){ [{ code: 'ITSA4F', quotas: 10 }] }
 
         it 'creates a new assets_position for current year' do
-
           expect(AssetPosition.find_by(year: year+1, code: 'ITSA4F')).to have_attributes(
             code: 'ITSA4F',
             year: year+1,
@@ -169,20 +86,8 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when bought quotas for new asset and sell all' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ITSA4F', 
-            buy_count: 10, 
-            sell_count: 10,
-            buy_sell_diff: 0,
-            avg_buy_price: 10.to_d, 
-            avg_sell_price: 20.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          []
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ITSA4F', 10, 10, 0, 10, 20)] }
+        let(:assets_custody){ [] }
 
         it 'not creates a new assets_position for current year' do
           expect(AssetPosition.find_by(year: year+1, code: 'ITSA4F')).to be_nil
@@ -190,26 +95,10 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when bought quotas for new asset and sell a few quotas' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ITSA4F', 
-            buy_count: 10, 
-            sell_count: 5,
-            buy_sell_diff: 5,
-            avg_buy_price: 10.to_d, 
-            avg_sell_price: 20.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ITSA4F',
-            quotas: 5
-          }]
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ITSA4F', 10, 5, 5, 10, 20)] }
+        let(:assets_custody){ [{ code: 'ITSA4F', quotas: 5 }] }
 
         it 'creates a new assets_position for current year' do
-
           expect(AssetPosition.find_by(year: year+1, code: 'ITSA4F')).to have_attributes(
             code: 'ITSA4F',
             year: year+1,
@@ -220,23 +109,8 @@ RSpec.describe AssetPosition, type: :model do
       end
 
       context 'when new asset split the quotas in 1:2 factor' do
-        let(:assets_negociation) do 
-          [{
-            code: 'ITSA4F', 
-            buy_count: 10, 
-            sell_count: 0,
-            buy_sell_diff: 10,
-            avg_buy_price: 10.to_d, 
-            avg_sell_price: 0.to_d
-          }]
-        end
-
-        let(:assets_custody) do
-          [{
-            code: 'ITSA4F',
-            quotas: 20
-          }]
-        end
+        let(:assets_negociation) { [build_assets_negociation_hash('ITSA4F', 10, 0, 10, 10, 0)] }
+        let(:assets_custody){ [{ code: 'ITSA4F', quotas: 20 }] }
 
         it 'creates a new assets_position for current year' do
 
@@ -251,7 +125,7 @@ RSpec.describe AssetPosition, type: :model do
     end  
   end
 
-  describe '.irpf_assets_and_rights' do
+  describe '#irpf_assets_and_rights' do
     before do
       AssetPosition.create(code: 'ABEV3F', year: Time.zone.now.year-1, quotas: 10, total_cost: 200.to_d)
       AssetPosition.create(code: 'ITSA4F', year: Time.zone.now.year-1, quotas: 20, total_cost: 300.to_d)
@@ -306,5 +180,15 @@ RSpec.describe AssetPosition, type: :model do
       end
     end
   end
+end
 
+def build_assets_negociation_hash(code, buy_count, sell_count, buy_sell_diff, avg_buy_price, avg_sell_price)
+  {
+    code: code, 
+    buy_count: buy_count, 
+    sell_count: sell_count,
+    buy_sell_diff: buy_sell_diff,
+    avg_buy_price: avg_buy_price.to_d, 
+    avg_sell_price: avg_sell_price.to_d
+  }
 end

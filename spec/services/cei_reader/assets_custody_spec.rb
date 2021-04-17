@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CeiReader::AssetsCustody, type: :service do
-  describe '.download' do
+  describe '#download' do
     subject(:assets_custody) do
       described_class.new(@cei_reader)
     end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CeiReader::AssetsNegociation, type: :service do
-  describe '.search' do
+  describe '#search' do
     subject(:assets_negociation) do
       described_class.new(@cei_reader)
     end
